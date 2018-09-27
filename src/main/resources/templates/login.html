@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+
+		<!--导入bootstrap.css-->
+		<link rel="stylesheet" href="/css/bootstrap.min.css" />
+		<!--注意：导入jquery.js-->
+		<script type="text/javascript" src="/js/jquery-1.11.0.js"></script>
+		<!--导入bootstrap.js-->
+		<script type="text/javascript" src="/js/bootstrap.js"></script>
+
+		<meta name="viewport" content="/width=device-width, initial-scale=1">
+		<!--导入css样式-->
+		<link rel="stylesheet" href="/css/lottery.css" />
+	</head>
+
+	<body>
+		<!--定义容器-->
+		<div class="container-fluid">
+			<!--标题栏部分-->
+			<div class="row">
+				<div class="col-xs-12 title">
+					<span style="float: left;" onclick="location.href='02-首页页面.html'">&lt;返回</span>
+					登录
+				</div>
+			</div>
+
+			<!--注册部分的结构-->
+			<div class="row">
+				<!--左边空格-->
+				<div class="col-xs-1"></div>
+
+				<!--中间内容-->
+				<div class="col-xs-10">
+					<div class="row" style="margin-top: 30px;">
+						<div class="col-xs-6 text-center" style="color: green;">登录</div>
+						<div class="col-xs-6 text-center" onclick="location.href='register.html'">注册</div>
+					</div>
+
+					<!--水平分割线-->
+					<hr style="border: 2px solid lightgray;" />
+
+					<!--表单输入项-->
+					<form>
+						<div class="form-group">
+							<input type="text" class="form-control"  placeholder="请输入手机号码...">
+						</div>
+						<div class="form-group">
+							<input type="password" class="form-control" placeholder="请输入密码...">
+						</div>
+						
+						<!--立即注册-->
+						<button type="submit" class="btn btn-success form-control">立即登录</button>		
+					</form>
+					
+					
+					<!--已有账号去登录-->
+					<div style="margin-top: 50px;">
+						没有账号?&nbsp; | &nbsp;  <span style="color: green;" onclick="location.href='register.html'">去注册</span>
+					</div>
+				</div>
+				<!--右边内容-->
+				<div class="col-xs-1"></div>
+				
+			</div>
+	
+	
+	
+		</div>
+	</body>
+
+</html>

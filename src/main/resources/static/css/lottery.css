@@ -1,0 +1,98 @@
+.title {
+	width: 100%;
+	height: 55px;
+	line-height: 55px;
+	color: rgba(16, 16, 16, 1);
+	font-size: 18px;
+	text-align: center;
+	font-family: Microsoft Yahei;
+	background-color: #DBD8D8;
+}
+
+.menu {
+	background-color: #DBD8D8;
+	width: 100%;
+	height: 50px;
+	position: fixed;
+	left: 0;
+	bottom: 0;
+	padding-top: 5px;
+}
+
+.menu-item {
+	float: left;
+	width: 33%;
+}
+
+/*菜单选中的样式*/
+.menu-item-selected {
+	color: red;
+}
+
+.code {
+	width: 95px;
+	height: 24px;
+	color: rgba(16, 16, 16, 1);
+	font-size: 16px;
+	text-align: left;
+	font-family: SourceHanSansSC-bold;
+}
+
+.ball-item {
+	width: 32px;
+	height: 32px;
+	line-height: 32px;
+	font-size: 14px;
+	text-align: center;
+	font-family: Roboto;
+	border: 1px solid rgba(187, 187, 187, 1);
+	border-radius: 100%;
+	margin-right: 5px;
+	display: inline-block;
+}
+
+
+
+/*保存球的div*/
+.ball-div{
+	width: 12.5%;
+	float: left;
+	margin-top: 10px;
+}
+
+
+.ball-item-red {
+	color: red;
+	margin-top:5px;
+}
+
+
+
+/*定义红球被选中的样式*/
+.ball-item-red-selected{
+	color: white;
+	background-color: red;
+	font-weight: bold;
+	
+}
+
+.ball-item-blue {
+	color: blue;
+}
+
+/*定义蓝球被选中的样式*/
+.ball-item-blue-selected{
+	color: white;
+	background-color: dodgerblue;
+	font-weight: bold;
+}
+
+.pay-item{
+	border: 1px solid gainsboro;
+	height: 50px;
+	line-height: 50px;
+	margin-left: -15px;
+	margin-right: -15px;
+	padding-left: 15px;
+	padding-right: 15px;
+}
