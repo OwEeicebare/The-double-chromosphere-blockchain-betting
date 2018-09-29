@@ -13,4 +13,6 @@ import com.wangchao.icebearbc.bean.User; /**
 public interface UserService {
 
     void doRegister(User user);
+
+    User dologin(String mobile, String password);
 }

@@ -11,4 +11,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
  * @Modify By:
  */
 public interface UserDao extends JpaRepository<User,String>{
+    User findByMobileAndPassword(String mobile, String newPassword);
 }

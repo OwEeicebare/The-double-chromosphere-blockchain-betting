@@ -9,7 +9,7 @@ import javax.persistence.Id;
  * @Auther:WangChao
  * @ClassName:User
  * @Date:Created in 2018/9/27 16:49
- * @Despriction:
+ * @Despriction: 用户信息
  * @Modify By:
  */
 @Entity

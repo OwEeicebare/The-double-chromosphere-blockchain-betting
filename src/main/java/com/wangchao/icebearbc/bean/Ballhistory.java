@@ -12,7 +12,7 @@ import java.util.List;
  * @Auther:WangChao
  * @ClassName:ballhistory
  * @Date:Created in 2018/9/26 10:26
- * @Despriction:
+ * @Despriction:彩票信息
  * @Modify By:
  */
 @Entity(name = "ballhistory")

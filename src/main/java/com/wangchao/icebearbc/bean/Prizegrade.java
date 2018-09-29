@@ -10,7 +10,7 @@ import javax.persistence.Id;
  * @Auther:WangChao
  * @ClassName:Prizegrade
  * @Date:Created in 2018/9/26 10:33
- * @Despriction:
+ * @Despriction:中奖信息
  * @Modify By:
  */
 @Data

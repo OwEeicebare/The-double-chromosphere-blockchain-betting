@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 
 	<head>
 		<meta charset="UTF-8">
@@ -32,24 +32,25 @@
 			<div class="row">
 				<!--左边空格-->
 				<div class="col-xs-1"></div>
+				<div th:text="${msg}" style="color: crimson"></div>
 
 				<!--中间内容-->
 				<div class="col-xs-10">
 					<div class="row" style="margin-top: 30px;">
 						<div class="col-xs-6 text-center" style="color: green;">登录</div>
-						<div class="col-xs-6 text-center" onclick="location.href='register.html'">注册</div>
+						<div class="col-xs-6 text-center" onclick="location.href='/user/registerUI'">注册</div>
 					</div>
 
 					<!--水平分割线-->
 					<hr style="border: 2px solid lightgray;" />
 
 					<!--表单输入项-->
-					<form>
+					<form action="/user/login" method="post">
 						<div class="form-group">
-							<input type="text" class="form-control"  placeholder="请输入手机号码...">
+							<input type="text" name="mobile" class="form-control"  placeholder="请输入手机号码...">
 						</div>
 						<div class="form-group">
-							<input type="password" class="form-control" placeholder="请输入密码...">
+							<input type="password" name="password" class="form-control" placeholder="请输入密码...">
 						</div>
 						
 						<!--立即注册-->
@@ -59,7 +60,7 @@
 					
 					<!--已有账号去登录-->
 					<div style="margin-top: 50px;">
-						没有账号?&nbsp; | &nbsp;  <span style="color: green;" onclick="location.href='register.html'">去注册</span>
+						没有账号?&nbsp; | &nbsp;  <span style="color: green;" onclick="location.href='/user/registerUI'">去注册</span>
 					</div>
 				</div>
 				<!--右边内容-->

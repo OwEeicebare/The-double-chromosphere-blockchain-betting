@@ -25,7 +25,7 @@ public class BallUtils {
 
         return balls;
     }
-
+ //随机产生蓝球
     public static String randomBlue(){
         int j = new Random().nextInt(16) + 1;
         String blue = String.format("%02d", j);

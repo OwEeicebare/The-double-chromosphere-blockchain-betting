@@ -17,7 +17,7 @@ import java.util.List;
  * @Auther:WangChao
  * @ClassName:IndexController
  * @Date:Created in 2018/9/26 10:46
- * @Despriction:
+ * @Despriction:主页往期开奖信息
  * @Modify By:
  */
 @Controller
@@ -49,10 +49,13 @@ public class IndexController {
        return "index";
     }
     @GetMapping("/detail")
-    public String detail(String code,Model model){
+    public String detail(String code,Model model){//跳转到彩票详情页面
+        //接收参数
         System.out.println(code+"+++++++++++++");
       Ballhistory history = historyService.findByCode(code);
+      //调用方法通过code查到对应的彩票信息
       model.addAttribute("history",history);
+      //通过model传给前端展示
       return "detail";
     }
 
