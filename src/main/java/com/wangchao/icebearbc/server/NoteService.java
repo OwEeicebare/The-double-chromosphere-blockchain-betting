@@ -17,4 +17,6 @@ public interface NoteService {
     List<Note> findAll();
 
     Note findOne(String nid);
+
+    Note findOnenote();
 }

@@ -35,4 +35,9 @@ public class NoteServerImpl implements NoteService {
     public Note findOne(String nid) {
         return dao.findOne(nid);
     }
+
+    @Override
+    public Note findOnenote() {
+        return dao.findTopByOrderByTimeDesc();
+    }
 }

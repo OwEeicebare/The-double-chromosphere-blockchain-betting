@@ -12,6 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -98,9 +99,9 @@ public class UserController {
     //跳转个人中心
     @GetMapping("/myUI")
     public String myUI(Model model){
-        List<String> red = BallUtils.randomRed();
+        List<String> red = Collections.singletonList(BallUtils.randomRedBall());
         //通过随机红球拿到一组list红球
-        String blue = BallUtils.randomBlue();
+        String blue = BallUtils.randomBlueBall();
         //拿到随机蓝球
 
         model.addAttribute("red",red);

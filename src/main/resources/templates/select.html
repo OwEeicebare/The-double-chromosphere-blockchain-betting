@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		
+		<!--导入bootstrap.css-->
+		<link rel="stylesheet" href="/css/bootstrap.min.css" />
+		<!--注意：导入jquery.js-->
+		<script type="text/javascript" src="/js/jquery-1.11.0.js" ></script>
+		<!--导入bootstrap.js-->
+		<script type="text/javascript" src="/js/bootstrap.js" ></script>
+		
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		
+		<link rel="stylesheet" href="/css/lottery.css" />
+		
+		<script>
+			/*
+			 js开发步骤:
+			 	1.确定事件
+			 	2.事件触发函数
+			 	3.函数里面干点事情: 
+			 		1.获取元素
+			 		2.操作元素
+			*/
+			/*文档加载完成的函数*/
+			$(function(){
+				/*给所有红球绑定单击事件*/
+				$(".ball-item-red").click(function(){
+					
+					//判断当前球是否选中,若选中,则取消选中
+					if($(this).is(".ball-item-red-selected")){
+						//删除选中的样式
+						$(this).removeClass("ball-item-red-selected");
+						return ;
+					}
+					
+					//限制只能选择6个红球
+					//1.判断是否已经选中了6个红球
+					var len = $(".ball-item-red-selected").length;
+					//1.1 若已经选中了,提示最多只能选6个
+					if(len >=6){
+						alert("最多只能选择6个红球")
+					}else{
+						//1.2 若当前没有选中6个球,选中
+						$(this).addClass("ball-item-red-selected")
+					}
+				});
+					
+				/*蓝球的单击事件*/	
+				$(".ball-item-blue").click(function(){
+					if($(this).is(".ball-item-blue-selected")){
+						$(this).removeClass("ball-item-blue-selected")
+					}else{
+						//1.获取已经被选中的蓝球
+						$(".ball-item-blue-selected").removeClass("ball-item-blue-selected");
+						//2.选中当前蓝球
+						$(this).addClass("ball-item-blue-selected");		
+					}
+				});
+			});
+			
+			/*
+			 	机选幸运号
+			 */
+			function randomOne(){
+				/*清除所有选中的红球*/
+				$(".ball-item-red-selected").removeClass("ball-item-red-selected")
+				
+				// 随机选中6个红球 Math.floor(Math.random()*33)
+				// 只要选中的红球数量小于6, 要不停的循环去找红球
+				while($(".ball-item-red-selected").length<6){
+					// 产生一个随机的角标
+					var i = Math.floor(Math.random()*33); // 1
+					// 随机的从所有红球中找到一个修改样式
+					var jsObj = $(".ball-item-red").get(i);
+					$(jsObj).addClass("ball-item-red-selected");
+				}
+				
+				//清空选中的蓝球
+				$(".ball-item-blue-selected").removeClass("ball-item-blue-selected")
+				
+				/*
+				 随机选择一个篮球
+				*/
+				var i = Math.floor(Math.random()*16);
+				var jsObj = $(".ball-item-blue").get(i);
+				$(jsObj).addClass("ball-item-blue-selected");
+			}
+			
+			/**
+			 * 获取选中的红球和蓝球的结果
+			 */
+			function getResult(){
+				// 获取选中的红球的号码: ,01,02,03,04,05,06
+				var redBall="";
+				$(".ball-item-red-selected").each(function(i,ball){
+					var red = $(ball).text();
+					//拼接结果
+					redBall += ","+red;
+				});
+				
+				//删除多余的一个逗号
+				redBall = redBall.substr(1);
+				
+				// 获取选中的蓝球的号码  13
+				var blueBall = $(".ball-item-blue-selected").text();
+				
+				//console.log("今天中午幸运号:"+redBall+" - "+blueBall);
+				return{red:redBall,blue:blueBall}
+			}
+            /**
+             * 获取选中多注的数组
+             */
+			function readomX() {//定义机选多注方法
+			  var value = $("#selectID").val();
+			  //拿到ID为selectID的下拉列表的value
+				var arr=[];
+				//定义接收数组arr
+				for (var i=0;i < value;i++){
+				    //循环遍历这个数字value
+					randomOne();
+					//调用生成一次的方法
+					var one = getResult()
+					//调用获取选中的红球和蓝球的结果赋值给one
+					arr[arr.length]=one;
+					//把one循环添加到arr中
+				}
+				console.log(arr)
+                console.log(JSON.stringify(arr))
+				//发送异步请求$.get传入一个路径/cartcontroller里的add,一个需要传入的值,一个回调函数把随机出来的球的数据传给后台
+				// $.get("/cart/add",{balls:JSON.stringify(arr)},function(data) {
+				// 	console.log(data);
+				// 	//通过找到class为badge的span标签调用text方法把data数值显示出来
+				// 	$("span[class='badge']").text(data);
+                // })
+				sendToController(arr)
+            }
+			//添加按钮的逻辑
+			function addOne() {
+				var redLength = $(".ball-item-red-selected").length;
+				//拿到一共有几个红球
+                var blueLength = $(".ball-item-blue-selected").length;
+                //拿到一共有几个蓝球
+                if (redLength==0 && blueLength==0){
+                    //如果都为0则运行随机选择一注
+                    randomOne();
+				}else if (redLength != 6 || blueLength!=1){
+                    //如果选择红球不为6或者蓝球不为1输出语句
+                    alert("必须选择6个红球和一个蓝球")
+				}else {
+                    var one = getResult();
+                    var arr = [one]
+					sendToController(arr)
+					//赋值并传给后台
+				}
+            }
+			//抽取向后台传入参数的方法
+			function sendToController(arr) {
+                $.get("/cart/add",{balls:JSON.stringify(arr)},function(data) {
+                    console.log(data);
+                    //通过找到class为badge的span标签调用text方法把data数值显示出来
+                    $("span[class='badge']").text(data);
+                })
+            }
+		</script>
+
+		
+	</head>
+	<body>
+		<!--定义容器<br />-->
+		<div class="container-fluid">
+			<div class="row ">
+				<div class="col-xs-12 title">
+					<!--返回的按钮-->
+					<span style="float: left;" onclick="location.href='02-首页页面.html'">&lt;返回</span>
+					博彩详情
+				</div>
+			</div>
+			
+			<!--展示最新彩票信息<br />-->
+			<div style="margin-top: 10px;">
+				<div style="float: left;">第2018017期</div>
+				<div style="float: right;">
+					奖池<span style="color: red;">4亿1523万</span>,可开出<span style="color: red;">83注</span>500万
+				</div>
+			</div>
+			
+			<div class="clearfix"></div>
+			
+			<!--文字提示-->
+			<div style="margin-top: 10px;color: darkgray">
+				请选择6个红球,1个蓝球
+			</div>
+			
+			<!--红球区域<br />-->
+			<div>
+				<div class="ball-div">
+					<div class="ball-item ball-item-red">01</div>
+				</div>
+				<div class="ball-div">
+					<div class="ball-item ball-item-red">02</div>
+				</div>
+				<div class="ball-div">
+					<div class="ball-item ball-item-red">03</div>
+				</div>
+				<div class="ball-div">
+					<div class="ball-item ball-item-red">04</div>
+				</div>
+				<div class="ball-div">
+					<div class="ball-item ball-item-red">05</div>
+				</div>
+				<div class="ball-div">
+					<div class="ball-item ball-item-red">06</div>
+				</div>
+				<div class="ball-div">
+					<div class="ball-item ball-item-red">07</div>
+				</div>
+				<div class="ball-div">
+					<div class="ball-item ball-item-red">08</div>
+				</div>
+				
+				<div class="ball-div">
+					<div class="ball-item ball-item-red">09</div>
+				</div>
+				<div class="ball-div">
+					<div class="ball-item ball-item-red">10</div>
+				</div>
+				<div class="ball-div">
+					<div class="ball-item ball-item-red">11</div>
+				</div>
+				<div class="ball-div">
+					<div class="ball-item ball-item-red">12</div>
+				</div>
+				<div class="ball-div">
+					<div class="ball-item ball-item-red">13</div>
+				</div>
+				<div class="ball-div">
+					<div class="ball-item ball-item-red">14</div>
+				</div>
+				<div class="ball-div">
+					<div class="ball-item ball-item-red">15</div>
+				</div>
+				<div class="ball-div">
+					<div class="ball-item ball-item-red">16</div>
+				</div>
+				
+				<div class="ball-div">
+					<div class="ball-item ball-item-red">17</div>
+				</div>
+				<div class="ball-div">
+					<div class="ball-item ball-item-red">18</div>
+				</div>
+				<div class="ball-div">
+					<div class="ball-item ball-item-red">19</div>
+				</div>
+				<div class="ball-div">
+					<div class="ball-item ball-item-red">20</div>
+				</div>
+				<div class="ball-div">
+					<div class="ball-item ball-item-red">21</div>
+				</div>
+				<div class="ball-div">
+					<div class="ball-item ball-item-red">22</div>
+				</div>
+				<div class="ball-div">
+					<div class="ball-item ball-item-red">23</div>
+				</div>
+				<div class="ball-div">
+					<div class="ball-item ball-item-red">24</div>
+				</div>
+				
+				<div class="ball-div">
+					<div class="ball-item ball-item-red">25</div>
+				</div>
+				<div class="ball-div">
+					<div class="ball-item ball-item-red">26</div>
+				</div>
+				<div class="ball-div">
+					<div class="ball-item ball-item-red">27</div>
+				</div>
+				<div class="ball-div">
+					<div class="ball-item ball-item-red">28</div>
+				</div>
+				<div class="ball-div">
+					<div class="ball-item ball-item-red">29</div>
+				</div>
+				<div class="ball-div">
+					<div class="ball-item ball-item-red">30</div>
+				</div>
+				<div class="ball-div">
+					<div class="ball-item ball-item-red">31</div>
+				</div>
+				<div class="ball-div">
+					<div class="ball-item ball-item-red">32</div>
+				</div>
+				
+				<div class="ball-div">
+					<div class="ball-item ball-item-red">33</div>
+				</div>
+				
+			</div>
+			
+			<!--清除浮动-->
+			<div class="clearfix"></div>
+			<!--蓝球区域<br />-->
+			<div style="margin-top: 20px;">
+				<div class="ball-div">
+					<div class="ball-item ball-item-blue">01</div>
+				</div>
+				<div class="ball-div">
+					<div class="ball-item ball-item-blue">02</div>
+				</div>
+				<div class="ball-div">
+					<div class="ball-item ball-item-blue">03</div>
+				</div>
+				<div class="ball-div">
+					<div class="ball-item ball-item-blue">04</div>
+				</div>
+				<div class="ball-div">
+					<div class="ball-item ball-item-blue">05</div>
+				</div>
+				<div class="ball-div">
+					<div class="ball-item ball-item-blue">06</div>
+				</div>
+				<div class="ball-div">
+					<div class="ball-item ball-item-blue">07</div>
+				</div>
+				<div class="ball-div">
+					<div class="ball-item ball-item-blue">08</div>
+				</div>
+				
+				<div class="ball-div">
+					<div class="ball-item ball-item-blue">09</div>
+				</div>
+				<div class="ball-div">
+					<div class="ball-item ball-item-blue">10</div>
+				</div>
+				<div class="ball-div">
+					<div class="ball-item ball-item-blue">11</div>
+				</div>
+				<div class="ball-div">
+					<div class="ball-item ball-item-blue">12</div>
+				</div>
+				<div class="ball-div">
+					<div class="ball-item ball-item-blue">13</div>
+				</div>
+				<div class="ball-div">
+					<div class="ball-item ball-item-blue">14</div>
+				</div>
+				<div class="ball-div">
+					<div class="ball-item ball-item-blue">15</div>
+				</div>
+				<div class="ball-div">
+					<div class="ball-item ball-item-blue">16</div>
+				</div>
+			</div>
+			
+			
+			<!--按钮组-->
+			<button type="button" class="btn btn-default pull-right" style="margin-top: 10px;" onclick="addOne()">添加</button>
+			
+			<!--清除浮动-->
+			<div class="clearfix"></div>
+			
+			<div class="pull-right" style="width: 100%; margin-top: 10px;">
+				<button type="button" class="btn btn-default pull-right" onclick="readomX()">机选幸运号</button>
+				
+				<select id="selectID" class="form-control" style="float: right;width: 18%;">
+				  <option value="1">1</option>
+				  <option value="2">2</option>
+				  <option value="3">3</option>
+				  <option value="4">4</option>
+				  <option value="5">5</option>
+				</select>
+				
+			</div>
+			
+			
+			<!--加一个空的div-->
+			<div style="height: 50px;">
+				<!--底部菜单栏-->
+				<div class="menu">
+
+					<!--标签-->
+					<div class="text-center menu-item" style="width: 50%;" onclick="location.href='/cart/cartUI'">
+						<!--图标-->
+						<span class="glyphicon glyphicon-shopping-cart" aria-hidden="true" style="font-size: 18px;"></span>
+						<span th:text="${session.cart.count}" class="badge" style="background-color: crimson;position: absolute;top: -8px"></span>
+						<br />
+						<!--文字说明-->
+						<p>购物车</p>
+					</div>
+
+					<!--标签-->
+					<div class="text-center menu-item" style="width: 50%;" onclick="location.href='cart.html'">
+						<!--图标-->
+						<span class="glyphicon glyphicon-save" aria-hidden="true" style="font-size: 18px;"></span><br />
+						<!--文字说明-->
+						<p>立即投注</p>
+					</div>
+				</div>
+
+			</div>
+		</div>
+	</body>
+</html>

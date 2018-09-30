@@ -1,7 +1,9 @@
 package com.wangchao.icebearbc.controller;
 
 import com.wangchao.icebearbc.bean.Ballhistory;
+import com.wangchao.icebearbc.bean.Note;
 import com.wangchao.icebearbc.server.HistoryService;
+import com.wangchao.icebearbc.server.NoteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -24,6 +26,10 @@ import java.util.List;
 public class IndexController {
     @Autowired
     private HistoryService historyService;
+
+    @Autowired
+    private NoteService noteService;
+
     @GetMapping("/")
     public String index(Model model, Integer pageNumber){
                     //pageNumber 接收一个int型的分页数
@@ -42,6 +48,10 @@ public class IndexController {
         //通过service层的定义的方法findall传入pageable获得集合
         model.addAttribute("page",page);
         //把page分页信息通过model传给浏览器
+
+         Note note = noteService.findOnenote();
+
+         model.addAttribute("note",note);
 
 //       List<Ballhistory> historys = historyService.findAll();
 //        //调用findAll来获取所有条目存入list集合中

@@ -1,34 +1,48 @@
 package com.wangchao.icebearbc.utils;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Random;
+import java.util.Set;
 import java.util.TreeSet;
 
+/**
+ * @Auther: Kaijun
+ * @Date: 2018/9/25 11:51
+ * @Description: 描述
+ */
 public class BallUtils {
 
-    //随机产生红球
-    public static List<String> randomRed(){
-        // 04,05,07,11,12,25  33个红球中随机产生 6个红球1个蓝球
-        // set 集合 : 不能重复  并且有序
-        TreeSet<Integer> sets = new TreeSet();
-
-        while(sets.size() < 6){
-            int i = new Random().nextInt(33) + 1; // 1-33
+    public static String randomRedBall(){
+        //在33个球的范围内,只要6个不一样的数字可以了
+        Set<Integer> sets = new TreeSet<>(); // 有序,唯一
+        //生成6个数
+        while(sets.size()<6){
+            //随机产生一个数字 1~33
+            int i = new Random().nextInt(33)+1;
             sets.add(i);
         }
-
-        List<String> balls = new ArrayList<>();
-        for (Integer i : sets){
-            balls.add(String.format("%02d", i));
+        //拼接字符串 : 02,06,13,22,29,31
+        String redBalls ="";
+        for (Integer i : sets) {
+            redBalls += "," + String.format("%02d", i);
+           /* String result="";
+            if(i < 10){
+                result ="0" + i;
+            }else{
+                result = i+"";
+            }*/
         }
+        redBalls = redBalls.substring(1);
+        System.out.println(redBalls);
 
-        return balls;
+        return redBalls;
     }
- //随机产生蓝球
-    public static String randomBlue(){
-        int j = new Random().nextInt(16) + 1;
-        String blue = String.format("%02d", j);
-        return blue;
+
+    /**
+     * 随机产生蓝球
+     * @return
+     */
+    public static String randomBlueBall(){
+        int i = new Random().nextInt(16)+1;
+        return String.format("%02d", i);
     }
 }

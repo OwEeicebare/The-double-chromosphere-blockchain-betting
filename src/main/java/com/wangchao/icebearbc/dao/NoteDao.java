@@ -11,4 +11,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
  * @Modify By:
  */
 public interface NoteDao extends JpaRepository<Note,String>{
+
+     Note findTopByOrderByTimeDesc();
 }
