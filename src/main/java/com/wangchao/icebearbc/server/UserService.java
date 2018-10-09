@@ -15,4 +15,6 @@ public interface UserService {
     void doRegister(User user);
 
     User dologin(String mobile, String password);
+
+    void doUpdate(User user);
 }

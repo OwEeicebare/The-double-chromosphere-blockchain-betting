@@ -22,7 +22,7 @@ public class Cart {
             //如果集合中有了这个key
             CartItem oldCartItem = carts.get(key);
             //拿到这个集合中对应key的购物车对象
-            oldCartItem.setCout(oldCartItem.getCout()+1);
+            oldCartItem.setCount(oldCartItem.getCount()+1);
             //拿到这个对象中的数量加一
         }else {
             carts.put(key,cartItem);
@@ -53,7 +53,7 @@ public class Cart {
         int count = 0;
         for (CartItem cartItem : carts.values()) {
 
-            count += cartItem.getCout();
+            count += cartItem.getCount();
         }
         return count;
     }

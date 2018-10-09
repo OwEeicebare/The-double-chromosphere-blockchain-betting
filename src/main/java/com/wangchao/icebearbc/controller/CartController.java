@@ -57,7 +57,7 @@ public class CartController {
     }
     @GetMapping("/cartUI")
     public String cartUI(){
-        return "cart";
+        return "cart.html";
     }
 
     //机选一注逻辑

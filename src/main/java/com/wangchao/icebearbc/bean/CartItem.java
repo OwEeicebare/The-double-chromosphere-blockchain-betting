@@ -18,13 +18,13 @@ public class CartItem {
     //蓝球
     private String blue;
     //数量
-    private int cout =1;
+    private int count =1;
     //单价
     private double price=2;
     //小计
     private double subtotal ;
 
     public double getSubtotal(){
-        return cout*price;
+        return count*price;
     }
 }

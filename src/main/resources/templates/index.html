@@ -74,15 +74,14 @@
 			<!--博彩论坛入口-->
 			<div class="row">
 				<div class="col-xs-12">
-					<h3 onclick="location">博彩论坛</h3>
+					<h3 onclick="location.href='/note/index'">博彩论坛</h3>
 					<div th:text="${note.title}">最新的帖子的标题</div>
 				</div>
 			</div>
 			<!--彩票的条目-->
-
 			<script>
-				function tiaozhuan(code) {
-					location.href='/detail?code='+code
+                function tiaozhuan(code){
+                    location.href='/detail?code='+code
                 }
 			</script>
 			<div th:each="history:${page.getContent()}" class="row" style="padding-top: 5px;" th:onclick="|tiaozhuan(${history.code})|">

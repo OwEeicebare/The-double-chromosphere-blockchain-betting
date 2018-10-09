@@ -110,7 +110,7 @@
 						<div class="ball-item ball-item-red" th:text="${cartItem.red.split(',')[5]}">32</div>
 						<div class="ball-item ball-item-blue" th:text="${cartItem.blue}">13</div>
 					</div>
-					<div style="color: darkgray;margin-top: 10px;" th:text="|单式${cartItem.cout}注  ${cartItem.getSubtotal()}元|">单式1注  2元</div>
+					<div style="color: darkgray;margin-top: 10px;" th:text="|单式${cartItem.count}注  ${cartItem.getSubtotal()}元|">单式1注  2元</div>
 				</div>
 				<!--右边小箭头-->
 				<div class="col-xs-1" style="padding-top: 24px;padding-left: 0px;">
@@ -126,7 +126,7 @@
 				<!--底部菜单栏-->
 				<div class="menu">
 					<!--标签-->
-					<div onclick="location.href='08-确认订单页面.html'" class="text-center menu-item" style="width: 100%;line-height: 40px;">
+					<div onclick="location.href='/order/save'" class="text-center menu-item" style="width: 100%;line-height: 40px;">
 						<p th:text="|立即付款  ${session.cart?.getTotal()}元|">立即付款  8元</p>
 					</div>
 				</div>

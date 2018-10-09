@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <title>黑马彩票</title>
+  <meta charset="UTF-8">
+  <!--导入bootstrap.css-->
+  <link rel="stylesheet" href="/css/bootstrap.min.css" />
+  <!--注意：导入jquery.js-->
+  <script type="text/javascript" src="/js/jquery-1.11.0.js"></script>
+  <!--导入bootstrap.js-->
+  <script type="text/javascript" src="/js/bootstrap.js"></script>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!--导入css样式-->
+  <link rel="stylesheet" href="/css/lottery.css" />
+</head>
+
+  <body>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-xs-12 title">修改头像</div>
+      </div>
+     
+      
+      <div style="margin-top: 50px;">
+      	<img th:src="|/user${session.user.headimg}|" class="img-thumbnail center-block">
+      </div>
+      
+      <div>
+        <form action="/user/updateHead" enctype="multipart/form-data" method="post">
+                                             <!--文件上传用的-->
+          <input type="file" name="headimg" class="form-control center-block" style="margin: 20px auto;" />
+
+          <input type="submit" class="btn btn-default center-block" value="点击上传"  />
+        </form>
+      </div>
+    </div>
+  </body>
+</html>

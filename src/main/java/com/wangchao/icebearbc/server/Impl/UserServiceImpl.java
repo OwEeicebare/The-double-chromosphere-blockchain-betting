@@ -33,4 +33,9 @@ public class UserServiceImpl implements UserService {
 
         return dao.findByMobileAndPassword(mobile,newPassword);
     }
+
+    @Override
+    public void doUpdate(User user) {
+        dao.save(user);
+    }
 }

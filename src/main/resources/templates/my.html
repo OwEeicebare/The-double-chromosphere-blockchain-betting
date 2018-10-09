@@ -24,11 +24,11 @@
 
 			<!--用户信息栏-->
 			<div class="row">
-				<div class="col-xs-4">
-					<img src="/img/icon.jpg" alt="" class="img-circle img-thumbnail" style="width:80px;height:80px" />
+				<div class="col-xs-4" onclick="location.href='/user/headUI'">
+					<img th:src="|/user${session.user.headimg}|" alt="" class="img-circle img-thumbnail" style="width:80px;height:80px" />
 				</div>
 				<div class="col-xs-8" style="padding-top: 22px;padding-left: 5px;">
-					<p style="font-size: 16px;" th:text="${session.user?.username}">凯骏</p>
+					<p style="font-size: 16px;" th:text="${session.user.username}">凯骏</p>
 					<p style="font-size: 14px;" th:text="|手机号:${session.user.mobile}|">手机号:18688889999</p>
 				</div>
 			</div>
@@ -43,13 +43,13 @@
 				</div>
 
 				<div class="col-xs-12 text-center" style="height:49px;">
-					<div style="color: crimson" class="ball-item ball-red" th:text="${red.get(0)}">01</div>
-					<div style="color: crimson" class="ball-item ball-red" th:text="${red.get(1)}">03</div>
-					<div style="color: crimson" class="ball-item ball-red" th:text="${red.get(2)}">08</div>
-					<div style="color: crimson" class="ball-item ball-red" th:text="${red.get(3)}">12</div>
-					<div style="color: crimson" class="ball-item ball-red" th:text="${red.get(4)}">23</div>
-					<div style="color: crimson" class="ball-item ball-red" th:text="${red.get(5)}">29</div>
-					<div style="color: blue" class="ball-item ball-blue" th:text="${blue}">15</div>
+					<div class="ball-item ball-red" >01</div>
+					<div class="ball-item ball-red" >03</div>
+					<div class="ball-item ball-red" >08</div>
+					<div class="ball-item ball-red" >12</div>
+					<div class="ball-item ball-red" >23</div>
+					<div class="ball-item ball-red" >29</div>
+					<div class="ball-item ball-blue" >15</div>
 				</div>
 
 				<div class="col-xs-offset-7 col-xs-2">
@@ -82,7 +82,7 @@
 			<hr />
 
 			<!--我的订单-->
-			<div class="row">
+			<div class="row" onclick="location.href='/order/list'">
 				<div class="col-xs-12">
 					我的订单
 				</div>

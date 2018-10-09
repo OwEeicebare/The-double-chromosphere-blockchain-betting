@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+
+		<!--导入bootstrap.css   -->
+		<link rel="stylesheet" href="/css/bootstrap.min.css" />
+		<!--注意：导入jquery.js-->
+		<script type="text/javascript" src="/js/jquery-1.11.0.js"></script>
+		<!--导入bootstrap.js-->
+		<script type="text/javascript" src="/js/bootstrap.js"></script>
+
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+
+		<link rel="stylesheet" href="/css/lottery.css" />
+	</head>
+
+	<body>
+
+		<div class="container-fluid">
+			<!--搭建一个标题栏-->
+			<div class="row ">
+				<div class="col-xs-12 title">
+					<!--返回的按钮-->
+					<span style="float: left;" onclick="javascript:history.back();">&lt;返回</span> 订单详情
+				</div>
+			</div>
+
+			<!--订单详情-->
+			<p style="margin-top: 20px;">订单详情:</p>
+
+			<!--订单的具体内容-->
+			<div>
+				<div class="row" style="border:1px solid gainsboro;padding-top: 10px;padding-bottom: 10px;">
+					<!--左边删除按钮-->
+					<div class="col-xs-1" style="padding-top: 24px;padding-left: 14px;">
+					</div>
+
+					<!--中间彩票内容-->
+					<div class="col-xs-10" style="padding-right: 0px;">
+						<div>
+							<div class="ball-item ball-item-red">02</div>
+							<div class="ball-item ball-item-red">12</div>
+							<div class="ball-item ball-item-red">23</div>
+							<div class="ball-item ball-item-red">25</div>
+							<div class="ball-item ball-item-red">28</div>
+							<div class="ball-item ball-item-red">32</div>
+							<div class="ball-item ball-item-blue">13</div>
+						</div>
+						<div style="color: darkgray;margin-top: 10px;">单式1注 2元</div>
+					</div>
+					<!--右边小箭头-->
+					<div class="col-xs-1" style="padding-top: 24px;padding-left: 0px;">
+					</div>
+				</div>
+				<!--购物项-->
+				<div class="row" style="border:1px solid gainsboro;padding-top: 10px;padding-bottom: 10px;">
+					<!--左边删除按钮-->
+					<div class="col-xs-1" style="padding-top: 24px;padding-left: 14px;">
+
+					</div>
+
+					<!--中间彩票内容-->
+					<div class="col-xs-10" style="padding-right: 0px;">
+						<div>
+							<div class="ball-item ball-item-red">02</div>
+							<div class="ball-item ball-item-red">12</div>
+							<div class="ball-item ball-item-red">23</div>
+							<div class="ball-item ball-item-red">25</div>
+							<div class="ball-item ball-item-red">28</div>
+							<div class="ball-item ball-item-red">32</div>
+							<div class="ball-item ball-item-blue">13</div>
+						</div>
+						<div style="color: darkgray;margin-top: 10px;">单式1注 2元</div>
+					</div>
+					<!--右边小箭头-->
+					<div class="col-xs-1" style="padding-top: 24px;padding-left: 0px;">
+
+					</div>
+				</div>
+				<!--购物项-->
+				<div class="row" style="border:1px solid gainsboro;padding-top: 10px;padding-bottom: 10px;">
+					<!--左边删除按钮-->
+					<div class="col-xs-1" style="padding-top: 24px;padding-left: 14px;">
+
+					</div>
+
+					<!--中间彩票内容-->
+					<div class="col-xs-10" style="padding-right: 0px;">
+						<div>
+							<div class="ball-item ball-item-red">02</div>
+							<div class="ball-item ball-item-red">12</div>
+							<div class="ball-item ball-item-red">23</div>
+							<div class="ball-item ball-item-red">25</div>
+							<div class="ball-item ball-item-red">28</div>
+							<div class="ball-item ball-item-red">32</div>
+							<div class="ball-item ball-item-blue">13</div>
+						</div>
+						<div style="color: darkgray;margin-top: 10px;">单式1注 2元</div>
+					</div>
+					<!--右边小箭头-->
+					<div class="col-xs-1" style="padding-top: 24px;padding-left: 0px;">
+
+					</div>
+				</div>
+			</div>
+			
+			<!--用户选择支付方式-->
+			<div style="margin-top: 60px;">
+				<div class="pay-item">
+					<div class="pull-left">微信支付</div>
+					<div class="pull-right"><input type="radio" name="payType"/></div>
+				</div>
+				<div class="pay-item">
+					<div class="pull-left">支付宝支付</div>
+					<div class="pull-right"><input type="radio" name="payType"/></div>
+				</div>
+				<div class="pay-item">
+					<div class="pull-left">黑马币支付</div>
+					<div class="pull-right"><input type="radio" name="payType"/></div>
+				</div>
+			</div>
+			
+			<!--底部菜单-->
+			<!--撑起页面-->
+			<div style="height: 50px;">
+				<!--底部菜单栏-->
+				<div class="menu">
+					<!--标签-->
+					<div onclick="location.href='09-订单列表页面.html'" class="text-center menu-item" style="width: 100%;line-height: 40px;">
+						<p>立即支付  6元</p>
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</body>
+
+</html>

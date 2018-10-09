@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+
 	<head>
-		<meta charset="UTF-8" />
+		<meta charset="UTF-8">
 		<title></title>
 
 		<!-- 最新版本的 Bootstrap 核心 CSS 文件 -->
-		<link rel="stylesheet" href="css/bootstrap.min.css" />
+		<link rel="stylesheet" href="css/bootstrap.min.css">
 
 		<!--导入JQUERY-->
 		<script type="text/javascript" src="js/jquery-1.11.0.js"></script>
@@ -13,7 +14,7 @@
 		<script src="js/bootstrap.min.js"></script>
 
 		<!--配置窗口的缩放-->
-		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta name="viewport" content="width=device-width, initial-scale=1">
 
 		<!--导入自定义的样式文件-->
 		<link rel="stylesheet" href="css/lottery.css" />
@@ -27,8 +28,7 @@
 			<div class="row ">
 				<div class="col-xs-12 title">
 					<!--返回的按钮-->
-
-					<span style="float: left;" onclick="location.href='/'">&lt;返回</span>
+					<span style="float: left;" onclick="location.href='02-首页页面.html'">&lt;返回</span>
 					博彩详情
 				</div>
 			</div>
@@ -45,19 +45,19 @@
 				<!-- Wrapper for slides -->
 				<div class="carousel-inner" role="listbox">
 					<div class="item active">
-						<img src="img/1.png" alt="..." />
+						<img src="img/1.png" alt="...">
 						<div class="carousel-caption">
 
 						</div>
 					</div>
 					<div class="item">
-						<img src="img/2.png" alt="..." />
+						<img src="img/2.png" alt="...">
 						<div class="carousel-caption">
 							...
 						</div>
 					</div>
 					<div class="item">
-						<img src="img/3.png" alt="..." />
+						<img src="img/3.png" alt="...">
 						<div class="carousel-caption">
 
 						</div>
@@ -94,15 +94,15 @@
 				<div class="ball-item ball-item-red" th:text="${history.red.split(',')[5]}">32</div>
 				<div class="ball-item ball-item-blue" th:text="${history.blue}">13</div>
 			</div>
-			
+
 			<!--清除浮动-->
 			<div class="clearfix"></div>
 			
 			<!--本期销量,奖池奖金-->
 			<table class="table table-bordered" style="margin-top: 10px;">
 				<tr style="background-color: lightgray">
-					<td class="text-center" >本期销量</td>
-					<td class="text-center" >奖池奖金</td>
+					<td class="text-center">本期销量</td>
+					<td class="text-center">奖池奖金</td>
 				</tr>
 				<tr>
 					<td class="text-center" style="color: red;" th:text="${history.sales}">338,323,123</td>
@@ -120,65 +120,41 @@
 				</tr>
 				<tr>
 					<td class="text-center">一等奖</td>
-					<td class="text-center" th:text="${history.getPrizegrades().get(0).typenum}">4</td>
-					<td class="text-center"  style="color: red;" th:text="${history.getPrizegrades().get(0).typemoney}">5,000,000</td>
+					<td class="text-center" th:text="${history.getPrizeGrades().get(0).typenum}">4</td>
+					<td class="text-center"  style="color: red;"  th:text="${history.getPrizeGrades().get(0).typemoney}">5,000,000</td>
 				</tr>
 				<tr>
-					<td class="text-center" >二等奖</td>
-					<td class="text-center" th:text="${history.getPrizegrades().get(1).typenum}">10</td>
-					<td class="text-center" style="color: red;" th:text="${history.getPrizegrades().get(1).typemoney}">2,000,000</td>
+					<td class="text-center">二等奖</td>
+					<td class="text-center" th:text="${history.getPrizeGrades().get(1).typenum}">10</td>
+					<td class="text-center" style="color: red;"  th:text="${history.getPrizeGrades().get(1).typemoney}">2,000,000</td>
 				</tr>
 				<tr>
-					<td class="text-center" >三等奖</td>
-					<td class="text-center" th:text="${history.getPrizegrades().get(2).typenum}">999</td>
-					<td class="text-center" th:text="${history.getPrizegrades().get(2).typemoney}">3000</td>
+					<td class="text-center">三等奖</td>
+					<td class="text-center" th:text="${history.getPrizeGrades().get(2).typenum}">999</td>
+					<td class="text-center"  th:text="${history.getPrizeGrades().get(2).typemoney}">3000</td>
 				</tr>
 				<tr>
 					<td class="text-center">四等奖</td>
-					<td class="text-center" th:text="${history.getPrizegrades().get(3).typenum}">1000</td>
-					<td class="text-center" th:text="${history.getPrizegrades().get(3).typemoney}">200</td>
+					<td class="text-center" th:text="${history.getPrizeGrades().get(3).typenum}">1000</td>
+					<td class="text-center"  th:text="${history.getPrizeGrades().get(3).typemoney}">200</td>
 				</tr>
 				<tr>
 					<td class="text-center">五等奖</td>
-					<td class="text-center" th:text="${history.getPrizegrades().get(4).typenum}">123414</td>
-					<td class="text-center" th:text="${history.getPrizegrades().get(4).typemoney}">10</td>
+					<td class="text-center" th:text="${history.getPrizeGrades().get(4).typenum}">123414</td>
+					<td class="text-center"  th:text="${history.getPrizeGrades().get(4).typemoney}">10</td>
 				</tr>
 				<tr>
 					<td class="text-center">六等奖</td>
-					<td class="text-center" th:text="${history.getPrizegrades().get(5).typenum}">3241324</td>
-					<td class="text-center" th:text="${history.getPrizegrades().get(5).typemoney}">5</td>
+					<td class="text-center" th:text="${history.getPrizeGrades().get(5).typenum}">3241324</td>
+					<td class="text-center"  th:text="${history.getPrizeGrades().get(5).typemoney}">5</td>
 				</tr>
 			</table>
+
+
+
+
+			<!--导入通用的菜单栏-->
 			<div th:replace="~{common/menu :: #menuid}"></div>
-			<!--	&lt;!&ndash;加一个空的div&ndash;&gt;
-			<div style="height: 50px;">
-				&lt;!&ndash;底部菜单栏&ndash;&gt;
-				<div class="menu">
-					&lt;!&ndash;标签&ndash;&gt;
-					<div class="text-center menu-item menu-item-selected">
-						&lt;!&ndash;图标&ndash;&gt;
-						<span class="glyphicon glyphicon-home" aria-hidden="true" style="font-size: 18px;"></span><br />
-						&lt;!&ndash;文字说明&ndash;&gt;
-						<p>首页</p>
-					</div>
-
-					&lt;!&ndash;标签&ndash;&gt;
-					<div class="text-center menu-item">
-						&lt;!&ndash;图标&ndash;&gt;
-						<span class="glyphicon glyphicon-shopping-cart" aria-hidden="true" style="font-size: 18px;"></span><br />
-						&lt;!&ndash;文字说明&ndash;&gt;
-						<p>选号</p>
-					</div>
-
-					&lt;!&ndash;标签&ndash;&gt;
-					<div class="text-center menu-item">
-						&lt;!&ndash;图标&ndash;&gt;
-						<span class="glyphicon glyphicon-user" aria-hidden="true" style="font-size: 18px;"></span><br />
-						&lt;!&ndash;文字说明&ndash;&gt;
-						<p>首页</p>
-					</div>
-				</div>
-			</div>-->
 
 		</div>
 
